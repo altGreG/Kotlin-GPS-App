@@ -10,12 +10,13 @@ import tech.altgreg.mygpsapp.other.Constants.TRIP_DATABASE_NAME
 
 @TypeConverters(Converters::class)
 @Database(
-    entities = [Trip::class],
-    version = 1
+    entities = [Trip::class, Marker::class],
+    version = 2
 )
 abstract class TripDatabase : RoomDatabase() {
 
     abstract fun getTripDao(): TripDAO
+    abstract fun getMarkerDao(): MarkerDAO
 
     companion object{
         @Volatile

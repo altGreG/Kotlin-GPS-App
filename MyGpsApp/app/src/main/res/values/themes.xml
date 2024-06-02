@@ -6,4 +6,22 @@
     </style>
 
     <style name="Theme.MyGpsApp" parent="Base.Theme.MyGpsApp" />
+    <style name="Theme.MyGpsApp.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+    <style name="Theme.MyGpsApp.ShowActionBarTripList">
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">false</item>
+        <item name="android:windowFullscreen">true</item>
+<!--        <item name="android:layout_marginBottom">20dp</item>-->
+    </style>
+
+    <style name="Theme.MyGpsApp.ShowActionBarTripMap">
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">false</item>
+        <item name="android:windowFullscreen">true</item>
+<!--        <item name="android:layout_marginTop">20dp</item>-->
+    </style>
 </resources>

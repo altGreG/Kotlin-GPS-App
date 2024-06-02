@@ -4,6 +4,10 @@ plugins {
     id("kotlin-kapt")
     id("kotlin-parcelize")
     id("com.google.devtools.ksp")
+//    id("com.android.application")
+    id("kotlin-android")
+//    id("kotlin-android-extensions")
+
 
 }
 
@@ -48,6 +52,8 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.play.services.maps)
     implementation(libs.play.services.location)
+    implementation(libs.play.services.cast.framework)
+    implementation(libs.androidx.runtime.saved.instance.state)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -88,7 +94,11 @@ dependencies {
     implementation("pub.devrel:easypermissions:3.0.0")
 
     // For developers using the Android Support Library
-    implementation("pub.devrel:easypermissions:2.0.1")
+    implementation("pub.devrel:easypermissions:3.0.0")
+
+    // Glide
+    implementation("com.github.bumptech.glide:glide:4.11.0")
+    kapt("com.github.bumptech.glide:compiler:4.11.0")
 
 
 }

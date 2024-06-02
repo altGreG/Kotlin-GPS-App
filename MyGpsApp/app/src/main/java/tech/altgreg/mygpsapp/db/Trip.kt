@@ -8,10 +8,8 @@ import androidx.room.PrimaryKey
 data class Trip(
     var img: Bitmap? = null,
     var timestamp: Long = 0L,
-    var avgSpeedInKMH: Float = 0f,
     var distanceInMeters: Int = 0,
     var timeInMillis: Long = 0L,
-    var caloriesBurned: Int =0
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null

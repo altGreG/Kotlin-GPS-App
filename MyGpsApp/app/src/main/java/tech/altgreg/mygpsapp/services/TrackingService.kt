@@ -10,6 +10,7 @@ import android.content.Intent
 import android.location.Location
 import android.os.Build
 import android.os.Looper
+import android.os.PowerManager
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
@@ -46,6 +47,8 @@ typealias Polylines = MutableList<Polyline>
 class TrackingService: LifecycleService() {
 
     var isFirstRun = true
+    var serviceKilled = false
+    private var wakeLock: PowerManager.WakeLock? = null
 
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
@@ -63,9 +66,7 @@ class TrackingService: LifecycleService() {
 
     companion object {
         val timeRunInMillis = MutableLiveData<Long>()
-
         val isTracking = MutableLiveData<Boolean>()
-
         val pathPoints = MutableLiveData<Polylines>()
     }
 
@@ -92,6 +93,15 @@ class TrackingService: LifecycleService() {
         timeRunInMillis.postValue(0L)
     }
 
+    private fun killService(){
+        serviceKilled = true
+        isFirstRun = true
+        pauseService()
+        postInitialValues()
+        stopForeground(true)
+        stopSelf()
+    }
+
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
         intent?.let {
@@ -113,6 +123,7 @@ class TrackingService: LifecycleService() {
                 }
 
                 ACTION_STOP_SERVICE -> {
+                    killService()
                     Log.d("Service", "Stopped Service")
                 }
 
@@ -176,9 +187,12 @@ class TrackingService: LifecycleService() {
             set(curNotificationBuilder, ArrayList<NotificationCompat.Action>())
         }
 
-        curNotificationBuilder =BaseNotificationBuilder
-            .addAction(R.drawable.ic_run, notificationActionText, pendingIntent)
-        notificationManager.notify(NOTIFICATION_ID, curNotificationBuilder.build())
+        if(!serviceKilled) {
+            curNotificationBuilder =BaseNotificationBuilder
+                .addAction(R.drawable.ic_run, notificationActionText, pendingIntent)
+            notificationManager.notify(NOTIFICATION_ID, curNotificationBuilder.build())
+        }
+
     }
 
     @SuppressLint("MissingPermission")
@@ -235,6 +249,13 @@ class TrackingService: LifecycleService() {
 
     private fun startForegroundService(){
 
+//        wakeLock =
+//            (getSystemService(Context.POWER_SERVICE) as PowerManager).run {
+//                newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "LocationService::lock").apply {
+//                    acquire(10*1000L)  // 10 seconds
+//                }
+//            }
+
         startTimer()
         isTracking.postValue(true)
 
@@ -248,9 +269,11 @@ class TrackingService: LifecycleService() {
         startForeground(NOTIFICATION_ID, BaseNotificationBuilder.build())
 
         timeRunInSec.observe(this, Observer {
-            val notification = curNotificationBuilder
-                .setContentText(TrackingUtility.getFormattedStopWatchTime(it*1000L))
-            notificationManager.notify(NOTIFICATION_ID, notification.build())
+            if(!serviceKilled){
+                val notification = curNotificationBuilder
+                    .setContentText(TrackingUtility.getFormattedStopWatchTime(it*1000L))
+                notificationManager.notify(NOTIFICATION_ID, notification.build())
+            }
         })
     }
 

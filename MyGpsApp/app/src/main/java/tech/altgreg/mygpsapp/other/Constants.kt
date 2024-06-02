@@ -1,12 +1,15 @@
 package tech.altgreg.mygpsapp.other
 
 import android.graphics.Color
-import androidx.annotation.InspectableProperty
 
 object Constants {
     const val TRIP_DATABASE_NAME = "trip_db"
 
-    const val REQUEST_CODE_LOCATION_PERMISSION = 0
+    const val REQUEST_PERMISSION_CODE_1 = 1
+    const val REQUEST_PERMISSION_CODE_2 = 2
+    const val REQUEST_PERMISSION_CODE_3 = 3
+    const val REQUEST_PERMISSION_CODE_4 = 4
+    const val REQUEST_PERMISSION_CODE_5 = 5
 
     const val ACTION_START_OR_RESUME_SERVICE = "ACTION_START_OR_RESUME_SERVICE"
     const val ACTION_PAUSE_SERVICE = "ACTION_PAUSE_SERVICE"
@@ -25,4 +28,8 @@ object Constants {
     const val NOTIFICATION_CHANNEL_ID = "tracking_channel"
     const val NOTIFICATION_CHANNEL_NAME = "Tracking"
     const val NOTIFICATION_ID = 1
+
+    const val REQUEST_CODE_GET_IMAGE = 101
+
+    const val ACTION_PUT_MARKER = "ACTION_PUT_MARKER"
 }

@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/material_dynamic_tertiary10"
-    tools:context=".ui.ShowTripsList">
+    tools:context=".ui.ShowTripMarkersList">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvTrips"
+        android:id="@+id/rvMarkers"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

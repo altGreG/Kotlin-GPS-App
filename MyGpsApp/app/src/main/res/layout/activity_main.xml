@@ -7,14 +7,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main_bg"
+    app:circularflow_defaultRadius="10sp"
     tools:context=".ui.MainActivity">
+
+    <Button
+        android:id="@+id/showMarkersBtn"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#673AB7"
+        android:text="Show Markers"
+        android:theme="@style/Widget.Material3.Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startTripBtn"
+        app:layout_constraintVertical_bias="0.363" />
 
     <TextView
         android:id="@+id/appNameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#00FFFFFF"
+        android:background="#6DFAB4E6"
+        android:padding="10dp"
         android:text="Welcome in TripMemo"
+        android:textColor="#7C4DFF"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -25,8 +42,10 @@
 
     <Button
         android:id="@+id/startTripBtn"
+        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#673AB7"
         android:text="Start Trip"
         android:theme="@style/Widget.Material3.Button"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -38,8 +57,10 @@
 
     <Button
         android:id="@+id/showTripsBtn"
+        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#673AB7"
         android:text="Show Last Trips"
         android:theme="@style/Widget.Material3.Button"
         app:layout_constraintBottom_toBottomOf="parent"

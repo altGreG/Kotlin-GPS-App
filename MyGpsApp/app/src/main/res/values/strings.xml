@@ -7,8 +7,7 @@
         <item>Average Speed</item>
         <item>Calories Burned</item>
     </string-array>
-    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">12345</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false"></string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="trip_name">Where are you?</string>
 </resources>

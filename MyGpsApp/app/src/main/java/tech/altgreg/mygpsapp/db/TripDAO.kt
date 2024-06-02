@@ -19,10 +19,14 @@ interface TripDAO {
     @Query("SELECT * FROM trip_table ORDER BY timestamp DESC")
     fun getAllTripsSortedByDate(): LiveData<List<Trip>>
 
-    @Query("SELECT * FROM trip_table ORDER BY timeInMillis DESC")
-    fun getAllTripsSortedByTimeInMillis(): LiveData<List<Trip>>
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertMarker(marker: Marker)
 
-    @Query("SELECT * FROM trip_table ORDER BY distanceInMeters DESC")
-    fun getAllTripsSortedByDistanceInMeters(): LiveData<List<Trip>>
+
+
+    @Query("SELECT * FROM trip_table ORDER BY id DESC")
+    fun getAllTripsSortedById(): LiveData<List<Trip>>
+
+
 
 }

@@ -28,16 +28,13 @@ class MarkerAdapter: RecyclerView.Adapter<MarkerAdapter.MarkerViewHolder>()  {
         val tvLocalization: TextView
         val tvTypeOfTrip: TextView
         val tvDescription: TextView
-//        val mvMarker: MapView
-//        var map: GoogleMap? = null
+
 
         init {
             ivMarkerImage = itemView.findViewById(R.id.ivMarkerImage)
             tvLocalization = itemView.findViewById(R.id.tvLocalization)
             tvTypeOfTrip = itemView.findViewById(R.id.tvTypeOfTrip)
             tvDescription = itemView.findViewById(R.id.tvDescription)
-//            mvMarker = itemView.findViewById(R.id.mvMarker)
-
 
         }
 
@@ -78,33 +75,10 @@ class MarkerAdapter: RecyclerView.Adapter<MarkerAdapter.MarkerViewHolder>()  {
             Glide.with(this).load(marker.img).into(holder.ivMarkerImage)
 
 
-//            val calendar = Calendar.getInstance().apply {
-//                timeInMillis = trip.timestamp
-//            }
-
-//            holder.mvMarker.getMapAsync{
-//                holder.map = it
-//            }
-//
-//            holder.map?.addMarker(
-//                MarkerOptions()
-//                    .position(LatLng(marker.posLat, marker.posLgd))
-//                    .title(marker.localization))
-//
-//            holder.map?.animateCamera(
-//                CameraUpdateFactory.newLatLngZoom(
-//                    LatLng(marker.posLat,marker.posLgd),
-//                    Constants.MAP_ZOOM
-//                )
-//            )
 
             holder.tvLocalization.text = marker.localization
             holder.tvTypeOfTrip.text = marker.typeOfTrip
             holder.tvDescription.text = marker.description
-
-
-
-
 
         }
     }

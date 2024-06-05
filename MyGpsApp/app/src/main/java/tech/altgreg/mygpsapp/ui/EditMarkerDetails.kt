@@ -63,14 +63,8 @@ class EditMarkerDetails : AppCompatActivity() {
             }catch (e:Exception){
                 Toast.makeText(this,"Fill all inputs :)", Toast.LENGTH_SHORT).show()
             }
-
-
-
         }
-
     }
-
-
 
     fun getAllDataFromForm():Marker{
         localization = localizationText.text.toString()
@@ -98,7 +92,6 @@ class EditMarkerDetails : AppCompatActivity() {
                 imageUri = selectedImage
                 imageView.setImageURI(imageUri)
                 imageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
-
             }
 
         }

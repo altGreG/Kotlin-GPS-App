@@ -24,21 +24,14 @@ class ShowTripsList : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        enableEdgeToEdge()
         setContentView(R.layout.activity_show_trips_list)
-
-
-
-//        tripViewModel = ViewModelProvider(this).get(TripViewModel::class.java)
 
         rvTrips = findViewById(R.id.rvTrips)
         setupRecyclerView()
 
-
         tripViewModel.tripsSortedByDate.observe(this, Observer {
             tripAdapter.submitList(it)
         })
-
 
     }
 

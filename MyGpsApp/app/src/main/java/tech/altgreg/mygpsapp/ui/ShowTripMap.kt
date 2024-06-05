@@ -48,7 +48,6 @@ class ShowTripMap : AppCompatActivity() , EasyPermissions.PermissionCallbacks{
     lateinit var mapView: MapView
 
     private var isTracking = false
-//    private var pathPoints = mutableListOf<Polyline>()
 
     private var curTimeInMillis = 0L
 
@@ -57,7 +56,6 @@ class ShowTripMap : AppCompatActivity() , EasyPermissions.PermissionCallbacks{
     lateinit var addLocationBtn: Button
     lateinit var tvTimer: TextView
 
-//    lateinit var rvTrips: RecyclerView
 
     var isStarted = false
 
@@ -65,11 +63,9 @@ class ShowTripMap : AppCompatActivity() , EasyPermissions.PermissionCallbacks{
 
     companion object {
         var tripMarkers =  mutableListOf<Marker>()
-//        val addedMarker = MutableLiveData<Boolean>()
         var pathPoints = mutableListOf<Polyline>()
     }
 
-//    private lateinit var tripAdapter: TripAdapter
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -107,15 +103,6 @@ class ShowTripMap : AppCompatActivity() , EasyPermissions.PermissionCallbacks{
         subscribeToObservers()
     }
 
-//    private fun setupRecyclerView() = rvTrips.apply {
-//        tripAdapter = TripAdapter()
-//        adapter = tripAdapter
-//        layoutManager = LinearLayoutManager(context)
-//    }
-
-
-
-
     private fun subscribeToObservers(){
         TrackingService.isTracking.observe(this, Observer {
             updateTracking(it)
@@ -131,7 +118,6 @@ class ShowTripMap : AppCompatActivity() , EasyPermissions.PermissionCallbacks{
             curTimeInMillis = it
             val formattedTime = TrackingUtility.getFormattedStopWatchTime(curTimeInMillis, true)
             tvTimer.text = formattedTime
-//            Log.d("Timer", "${formattedTime}")
         })
 
     }
@@ -143,19 +129,6 @@ class ShowTripMap : AppCompatActivity() , EasyPermissions.PermissionCallbacks{
         }
     }
 
-//    fun putMarkerOnLastLocation(){
-//
-//
-//            Log.d("Markers", "${tripMarkers.last().posLat} ::: ${tripMarkers.last().posLgd}")
-//
-//            map?.addMarker(
-//                MarkerOptions()
-//                .position(LatLng(tripMarkers.last().posLat, tripMarkers.last().posLgd))
-//                .title(tripMarkers.last().localization))
-//
-//
-//    }
-
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
 //        if(intent?.action == Constants.ACTION_PUT_MARKER){
@@ -163,13 +136,6 @@ class ShowTripMap : AppCompatActivity() , EasyPermissions.PermissionCallbacks{
 //        }
         addAllPolylines()
 
-    }
-
-    fun putMarkerIfNeeded(intent: Intent?){
-        if(intent?.action == Constants.ACTION_PUT_MARKER){
-//            putMarkerOnLastLocation()
-            Toast.makeText(this,"Successfully added marker", Toast.LENGTH_SHORT).show()
-        }
     }
 
     private fun toggleRun(){
@@ -252,7 +218,7 @@ class ShowTripMap : AppCompatActivity() , EasyPermissions.PermissionCallbacks{
 
     private fun stopTrip() {
         sendCommandToService(ACTION_STOP_SERVICE)
-        Intent(this, MainActivity::class.java).also {   // forchange
+        Intent(this, MainActivity::class.java).also {
             startActivity(it)
             finish()
         }
@@ -321,10 +287,6 @@ class ShowTripMap : AppCompatActivity() , EasyPermissions.PermissionCallbacks{
         mapView?.onLowMemory()
     }
 
-//    override fun onDestroy() {
-//        super.onDestroy()
-//        mapView?.onDestroy()
-//    }
 
     override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
         super.onSaveInstanceState(outState, outPersistentState)

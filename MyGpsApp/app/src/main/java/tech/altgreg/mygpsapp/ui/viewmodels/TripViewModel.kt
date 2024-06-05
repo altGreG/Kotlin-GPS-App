@@ -14,27 +14,19 @@ import tech.altgreg.mygpsapp.db.TripRepository
 class TripViewModel(application: Application): AndroidViewModel(application) {
 
     private var readAllData: LiveData<List<Trip>>
-
     private var readAllMarkers: LiveData<List<Marker>>
     private var repository: TripRepository
-
-
-
 
     init {
         val tripDAO = TripDatabase.getDatabase(application).getTripDao()
         val markerDAO = TripDatabase.getDatabase(application).getMarkerDao()
 
         repository = TripRepository(tripDAO, markerDAO)
-
         readAllData = repository.readAllDataByDate
-
         readAllMarkers = repository.readAllMarkers
-
     }
 
     val tripsSortedByDate = repository.getAllDataByDate()
-//    val tripsSortedById = repository.getAllDataById()
     val markers = repository.getAllMarkers()
 
     fun addTrip(trip: Trip){

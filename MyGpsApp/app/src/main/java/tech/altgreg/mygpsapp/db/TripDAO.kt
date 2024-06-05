@@ -22,8 +22,6 @@ interface TripDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMarker(marker: Marker)
 
-
-
     @Query("SELECT * FROM trip_table ORDER BY id DESC")
     fun getAllTripsSortedById(): LiveData<List<Trip>>
 
